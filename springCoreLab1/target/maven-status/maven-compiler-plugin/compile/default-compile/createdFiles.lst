@@ -1,0 +1,12 @@
+com\example\User.class
+com\example\MyBeanClass.class
+com\example\ProductDAO.class
+com\example\Service1Impl.class
+com\example\UserDAO.class
+com\example\Calculator.class
+com\example\CalculatorImpl.class
+com\example\Service2Impl.class
+com\example\DAOServiceImpl.class
+com\example\MyBeanFactory.class
+com\example\ServiceFactory.class
+com\example\SpringApp.class

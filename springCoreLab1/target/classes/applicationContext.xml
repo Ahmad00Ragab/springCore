@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- ============= Constructors =============  -->
+    <!-- Default Constructor   -->
+    <bean id="CalculatorImpl" class="com.example.CalculatorImpl"></bean>
+
+    <!-- Constructor   (takes int )-->
+    <bean id="service1" class="com.example.Service1Impl">
+        <constructor-arg value="20" />
+    </bean>     
+
+    <!-- Constructor   (takes String )-->
+    <bean id="service2" class="com.example.Service2Impl">
+        <constructor-arg value="Haroun" />
+    </bean> 
+
+    <!-- 1. Instantiation using a Static Factory Method --> 
+    <!-- <bean id="myBean" class="com.example.MyBeanClass" factory-method="createInstance"/> -->
+
+    <!-- 1. Instantiation using a Factory Method inside a factory -->
+    <bean id="myBeanFactory" class="com.example.MyBeanFactory" />
+    <bean id="myBean" factory-bean="myBeanFactory" factory-method="createInstance" />
+
+
+    
+    <!-- ============= Dependency Injection =============  -->    
+    <!-- Constructor Based Method  -->
+
+    <!-- Define the ProductDAO bean -->
+    <bean id="productDAO" class="com.example.ProductDAO" />
+
+    <!-- Define the UserDAO bean -->
+    <bean id="userDAO" class="com.example.UserDAO" />
+
+    <!-- Define the DAOServiceImpl bean and inject ProductDAO and UserDAO --> 
+    <bean id="daoService" class="com.example.DAOServiceImpl">
+        <constructor-arg ref="productDAO" />
+        <!-- <constructor-arg ref="userDAO" />  -->
+    </bean>
+
+    <!-- passing arguments by index  -->
+    <bean id= "user" class="com.example.User">
+        <constructor-arg index="1" value="Haroun" />
+        <constructor-arg index="0" value="Ahmad" />
+    </bean>
+
+    <!-- Factory Based Method  -->
+    <!-- ========= Create a serviceFactory ========= -->
+    <bean id="serviceFactory" class="com.example.ServiceFactory" />
+    <bean id="producatDAO"    class="com.example.ProductDAO" />
+    <bean id="daoServiceFactoryMethod"     factory-bean="serviceFactory" factory-method="createDAOService">
+        <constructor-arg ref="productDAO" />
+    </bean>
+
+
+    <!--  Setter Method  -->
+    <bean id="productDAORef" class="com.example.ProductDAO"/>
+    
+    <bean id="daoServiceSetterMethod" class="com.example.DAOServiceImpl">
+        <property  name="productDAO" ref="productDAORef"/>
+    </bean>
+
+</beans>
