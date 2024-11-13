@@ -1,0 +1,14 @@
+com\example\Address.class
+com\example\OuterBean.class
+com\example\DependentBean.class
+com\example\InnerBean.class
+com\example\MyEagerBean.class
+com\example\RefExample.class
+com\example\CompoundPropertyBean.class
+com\example\Collaborator.class
+com\example\CollectionBean.class
+com\example\MyBean.class
+com\example\AutowireByNameBean.class
+com\example\AutowireByTypeBean.class
+com\example\MyLazyBean.class
+com\example\SpringApp.class

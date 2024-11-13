@@ -1,0 +1,70 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+    <!-- Parent bean -->
+    <bean id="parentBean"  class="com.example.MyBeanClass" abstract="true">
+        <property name="commonProperty" value="Parent value"/>
+    </bean>
+
+    <!-- Child bean inherits from parent -->
+    <bean id="childBean" parent="parentBean">
+        <property name="commonProperty" value="Child-specific value"/>
+    </bean>
+
+
+
+    <!-- Parent bean with list -->
+    <bean id="parentBeanWithList" class="com.example.ParentChildCollectionBean" abstract="true">
+        <property name="items">
+            <list>
+                <value>Parent Item 1</value>
+                <value>Parent Item 2</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Child bean with list inherits from parent -->
+    <bean id="childBeanWithList" parent="parentBeanWithList">
+        <property name="items">
+            <list merge="true">
+                <value>Child Item 1</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- PropertyPlaceholderConfigurer -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:app.properties"/>
+    </bean>
+
+    <!-- Database config using properties -->
+    <bean id="databaseConfig"     class="com.example.DatabaseConfig">
+        <property name="url"      value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
+    </bean>
+
+
+    <!-- Annotations Part -->
+
+    <!-- Enable annotation-based configuration -->
+    <context:annotation-config/>
+    <context:component-scan base-package="com.example"/> <!-- Add this line -->
+
+
+    <!-- Bean definitions --> 
+    <bean id="serviceBean"    class="com.example.Service"/>
+
+    <bean id="primaryBean"    class="com.example.PrimaryDependency"/>    
+    <bean id="secondaryBean"  class="com.example.SecondaryDependency"/>
+    <bean id="secondaryBean2" class="com.example.SecondaryDependency"/>
+    <bean id="resourceBean"   class="com.example.ResourceDependency"/>
+</beans>

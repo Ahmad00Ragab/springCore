@@ -1,0 +1,76 @@
+what is Spring?
+it is a framework that we use to build java applications. It is a set of tools and libraries that make it easier to build robust, scalable,
+and maintainable applications.
+
+What is the Dependency injection?
+it is a design pattern in which the class receives its Dependencies from and external source rather than creating them internally.
+it is the implementation of the IOC(inversion of control) Principle
+
+
+what is IOC (inversion of control)?
+it is a design pattern in which the responsiblity of creating and managing the dependencies 
+is transfered from the class its self to a third party, called the container (IOC spring container).
+
+
+what are the type of Dependency injection?
+1. field based dependency injection
+2. constructor based dependency injection
+3. setter based dependency injection
+
+what is spring bean?
+In Spring, a bean is simply an object that the IoC container manages. These beans are created, configured, and wired together
+by the container based on configurations provided either through XML, Java annotations, or Java configuration classes.
+
+what are the ways that we can craete the spring bean?
+1. XML configuration
+<!-- beans.xml -->
+<beans>
+    <bean id="carService" class="com.example.CarService" scope="singleton"/>
+</beans>
+
+2. Java configuration classes
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public CarService carService() {
+        return new CarService();
+    }
+}
+
+3. through java annotations(stereotypes)  ==> @component @service @repository @controller 
+@Component
+@Scope("prototype")
+public class OrderService {
+    // Each request for OrderService will get a new instance
+}
+
+
+what is difference between @component, @service, @repository and @controller?
+all of them are placed on the class to indicate give a signal to the IOC container that it is a spring bean.
+1. @component  ==> it is a general purpose class that can be used in any layer of the application
+2. @service    ==> it is a specialized version of the @component that is used in the service layer of the application
+3. @repository ==> it is a specialized version of the @component that is used in the data access layer
+4. @controller ==> it is a specialized version of the @component that is used in the presentation
+
+where should we use the @componentScan and why?
+we should use it in the configuration class to tell the IOC container where to look for any 
+class annotated with @component @service @repository @controller to register them as spring beans.
+
+what is the application context?
+it is the root of the spring application, it is the entry point of the spring application.
+it is context of the application that is used to manage the spring beans.
+
+what are the scopes of the bean?
+1. Singleton (Default): Only one instance of the bean is created and shared across the entire application context. (stateless) 
+2. Prototype          : A new instance of the bean is created each time it is requested. (statful)
+3. Request            : A new instance of the bean is created for each HTTP request.
+4. Session            : A new instance of the bean is created for each HTTP session.
+5. Application        : A new instance of the bean is created for each application context.
+6. WebSocket          : A new instance of the bean is created for each WebSocket session.
+
+what is the difference between BeanFactory and ApplicationContext?
+Both of them are used to manage the spring beans and represents the IOC Container.
+- BeanFactory       : Basic container with core functionality. Suitable for lightweight or embedded applications  where resources are constrained.
+- ApplicationContext: Advanced container with enterprise-level features, preferred for most applications
+, especially for web and enterprise-level applications due to its richer feature set.

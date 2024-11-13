@@ -1,0 +1,9 @@
+com\example\ResourceDependency.class
+com\example\PrimaryDependency2.class
+com\example\DatabaseConfig.class
+com\example\PrimaryDependency.class
+com\example\MyBeanClass.class
+com\example\Service.class
+com\example\ParentChildCollectionBean.class
+com\example\SecondaryDependency.class
+com\example\SpringApp.class

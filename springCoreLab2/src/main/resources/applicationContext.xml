@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Bean Scopes: Singleton and Prototype -->
+    <bean id="singletonBean" class="com.example.MyBean" scope="singleton"/>
+    <bean id="prototypeBean" class="com.example.MyBean" scope="prototype"/>
+
+    <!-- Lazy and Eager Initialization -->
+    <bean id="lazyBean" class="com.example.MyLazyBean" lazy-init="true"/>
+    <bean id="eagerBean" class="com.example.MyEagerBean" lazy-init="false"/>
+
+    <!-- Inner Bean Example -->
+    <bean id="outerBean" class="com.example.OuterBean">
+        <property name="innerBean">
+            <bean class="com.example.InnerBean"/>
+        </property>
+    </bean>
+
+    <!-- Collection Injection: List Example -->
+    <bean id="collectionBean" class="com.example.CollectionBean">
+        <property name="names">
+            <list>
+                <value>Ahmad</value>
+                <value>Haroun</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean id="collaborator" class="com.example.Collaborator"/>
+
+    <!-- Bean Autowiring by Type -->
+    <bean id="autowireByTypeBean" class="com.example.AutowireByTypeBean" autowire="byType"/>
+
+    <!-- Bean Autowiring by Name -->
+    <bean id="autowireByNameBean" class="com.example.AutowireByNameBean" autowire="byName"/>
+
+      <!-- idref Usage -->
+      <bean id="refExample" class="com.example.RefExample">
+        <property name="beanId">
+            <idref bean="singletonBean"/>
+        </property>
+    </bean>
+
+    <!-- `depend-on` Example -->
+    <bean id="dependentBean" class="com.example.DependentBean" depends-on="singletonBean"/>
+
+    <!-- Compound Property Name Example -->
+    <bean id="compoundPropertyBean" class="com.example.CompoundPropertyBean">
+        <property name="address">
+            <bean class="com.example.Address">
+                <property name="city" value="New York"/>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

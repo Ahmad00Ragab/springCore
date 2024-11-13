@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+           
+    <!-- Component scanning with custom scope resolver -->
+     <!-- <context:component-scan base-package="com.example" scope-resolver="com.example.CustomScope"> -->
+        <!-- Include only components with the @Service annotation -->
+        <!-- <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/> -->
+        <!-- Exclude classes matching a certain pattern, e.g., repositories -->
+        <!-- <context:exclude-filter type="regex" expression=".*Repository"/> -->
+    <!-- </context:component-scan>  -->
+
+    <context:component-scan base-package="com.example"/>
+
+    <!-- Define ManagedBean example if needed -->
+    <!-- <bean id="managedBeanExample" class="com.example.ManagedBeanExample"/> -->
+
+</beans>

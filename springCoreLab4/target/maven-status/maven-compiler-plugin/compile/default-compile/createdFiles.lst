@@ -1,0 +1,7 @@
+com\example\MyScope.class
+com\example\MyService.class
+com\example\ManagedBeanExample.class
+com\example\MyBean.class
+com\example\CustomScope.class
+com\example\PrototypeComponent.class
+com\example\SpringApp.class
